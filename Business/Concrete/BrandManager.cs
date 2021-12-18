@@ -1,15 +1,11 @@
 ﻿using Business.Abstract;
 using Business.ValidationRules;
 using Core.Aspects.Autofac.Validation;
-using Core.CrossCuttingConcerns.Validation.FluentValidation;
 using Core.Utilities.Results;
 using Core.Utilities.Results.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using FluentValidation;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -46,6 +42,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == brandId));
         }
 
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);

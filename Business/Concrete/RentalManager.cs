@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants.Messages;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using Core.Utilities.Results.Abstract;
@@ -7,7 +8,6 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -20,6 +20,8 @@ namespace Business.Concrete
             _rentalDal = rentalDal;
         }
 
+
+        [ValidationAspect(typeof(Rental))]
         public IResult Add(Rental rental)
         {
             IResult result = BusinessRules.Run(CheckIfCarIsNotRented(rental.CarId), 
@@ -52,6 +54,8 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId));
         }
 
+
+        [ValidationAspect(typeof(Rental))]
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);

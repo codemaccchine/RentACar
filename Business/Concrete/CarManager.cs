@@ -10,8 +10,6 @@ using Entities.Concrete;
 using Entities.Dtos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -36,7 +34,7 @@ namespace Business.Concrete
             return new SuccessResult(SuccessMessages.CarAdded);
         }
 
-        [ValidationAspect(typeof(CarValidator))]
+        [ValidationAspect(typeof(CarValidator))]  
         public IResult Update(Car car)
         {
             if (car.Description.Length < 3 || car.DailyPrice <= 0)

@@ -9,10 +9,9 @@ using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using Business.Constants.Messages;
+using Business.ValidationRules;
 
 namespace Business.Concrete
 {
@@ -24,7 +23,7 @@ namespace Business.Concrete
             _imageDal = imageDal;
         }
 
-        //[ValidationAspect(typeof(ImageValidator))]
+        [ValidationAspect(typeof(ImageValidator))]
         public IResult Add(IFormFile file, Image carImage)
         {
             var imageResult = FileHelper.Upload(file);
@@ -46,7 +45,7 @@ namespace Business.Concrete
             return new SuccessResult(SuccessMessages.ImageAdded);
         }
 
-        //[ValidationAspect(typeof(ImageValidator))]
+        [ValidationAspect(typeof(ImageValidator))]
         public IResult Update(IFormFile file, Image carImage)
         {
             var isImage = _imageDal.Get(c => c.Id == carImage.Id);
@@ -89,9 +88,10 @@ namespace Business.Concrete
 
         public IDataResult<Image> GetById(int id)
         {
-
             return new SuccessDataResult<Image>(_imageDal.Get(b => b.Id == id), SuccessMessages.ImageListed);
         }
+
+
 
 
         private IResult CheckIfImageLimitExceded(Image carImage)
@@ -120,7 +120,7 @@ namespace Business.Concrete
         {
             try
             {
-                string path = @"\images.default.png";
+                string path = @"\images\default.png";
                 var result = _imageDal.GetAll(c => c.CarId == id).Any();
                 if (!result)
                 {

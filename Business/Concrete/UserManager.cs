@@ -1,11 +1,10 @@
 ﻿using Business.Abstract;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using Core.Utilities.Results.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -18,6 +17,8 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
+
+        [ValidationAspect(typeof(User))]
         public IResult Add(User user)
         {
             _userDal.Add(user);
@@ -40,6 +41,8 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userDal.Get(u=>u.Id == userId));
         }
 
+
+        [ValidationAspect(typeof(User))]
         public IResult Update(User user)
         {
             _userDal.Update(user);

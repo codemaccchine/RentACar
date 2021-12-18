@@ -4,9 +4,7 @@ using Core.Utilities.Interceptors;
 using Core.Utilities.Messages;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Core.Aspects.Autofac.Validation
 {

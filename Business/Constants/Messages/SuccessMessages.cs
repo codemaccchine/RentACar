@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Business.Constants.Messages
+﻿namespace Business.Constants.Messages
 {
     public static class SuccessMessages
     {
@@ -47,10 +43,11 @@ namespace Business.Constants.Messages
         public static readonly string CarImageUpdated = "Araba resmi güncellendi";
         public static readonly string CarImageDeleted = "Araba resmi silindi";
         public static readonly string CarImageListed = "Araba resmi görüntülendi";
-        internal static string ImageAdded;
-        internal static string ImageUpdated;
-        internal static string ImageDeleted;
-        internal static string ImagesListed;
-        internal static string ImageListed;
+
+        public static readonly string ImageAdded;
+        public static readonly string ImageUpdated;
+        public static readonly string ImageDeleted;
+        public static readonly string ImagesListed;
+        public static readonly string ImageListed;
     }
 }

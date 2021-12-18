@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Business.Constants.Paths
+﻿namespace Business.Constants.Paths
 {
     public static class ImagePaths
     {
