@@ -1,4 +1,6 @@
-﻿namespace Business.Constants.Messages
+﻿using System.Runtime.Serialization;
+
+namespace Business.Constants.Messages
 {
     public static class ErrorMessages
     {
@@ -14,8 +16,8 @@
         public static readonly string BrandLimitExceded = "Araç eklenemiyor. Marka sayısı limitine ulaşıldı";
         public static readonly string ImageNotFound = "Resim bulunamadı";
         public static readonly string CarImageLimitExceded = "Araba için daha fazla resim yüklenemiyor";
-        public static readonly string ImageLimitExceded;
-        public static readonly string RentalReturnDateNotNull;
-        public static readonly string RentalReturnDateNextTime;
+        public static readonly string ImageLimitExceded = "Resim yükleme limiti aşıldığı için yeni resim yüklenemiyor";
+        public static readonly string RentalReturnDateNextTime = "Kiralamak istediğiniz araba henüz dönüş yapmadı";
+        public static readonly string AuthorizationDenied = "Yetkiniz yok";
     }
 }

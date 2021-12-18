@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants.Messages;
 using Business.ValidationRules;
 using Core.Aspects.Autofac.Validation;
@@ -53,6 +54,7 @@ namespace Business.Concrete
         }
 
 
+        [SecuredOperation("admin")]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 0)

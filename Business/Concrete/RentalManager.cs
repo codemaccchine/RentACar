@@ -69,7 +69,7 @@ namespace Business.Concrete
             var carToBeRented = _rentalDal.Get(r => r.CarId == carId);
             if (String.IsNullOrEmpty(carToBeRented.ReturnDate.ToString()))
             {
-                return new ErrorResult(ErrorMessages.RentalReturnDateNotNull);
+                return new ErrorResult(ErrorMessages.RentalReturnDateNextTime);
             }
             return new SuccessResult();
         }
