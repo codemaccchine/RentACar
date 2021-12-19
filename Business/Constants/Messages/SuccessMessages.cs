@@ -38,16 +38,14 @@
         public static readonly string RentalDeleted = "Araç kiralama silindi";
         public static readonly string RentalListed = "Araç kiralama görüntülendi";
 
-        public static readonly string CarImagesListed = "Araba resmi listelendi";
-        public static readonly string CarImageAdded = "Araba resmi eklendi";
-        public static readonly string CarImageUpdated = "Araba resmi güncellendi";
-        public static readonly string CarImageDeleted = "Araba resmi silindi";
-        public static readonly string CarImageListed = "Araba resmi görüntülendi";
+        public static readonly string ImageAdded = "Araba resmi listelendi";
+        public static readonly string ImageUpdated = "Araba resmi eklendi";
+        public static readonly string ImageDeleted = "Araba resmi güncellendi";
+        public static readonly string ImagesListed = "Araba resmi silindi";
+        public static readonly string ImageListed = "Araba resmi görüntülendi";
 
-        public static readonly string ImageAdded;
-        public static readonly string ImageUpdated;
-        public static readonly string ImageDeleted;
-        public static readonly string ImagesListed;
-        public static readonly string ImageListed;
+        public static readonly string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+        public static readonly string SuccessfulLogin = "Başarılı giriş";
+        public static readonly string UserRegistered = "Kullanıcı başarıyla kaydedildi";
     }
 }

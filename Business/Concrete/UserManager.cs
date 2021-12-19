@@ -30,10 +30,10 @@ namespace Business.Concrete
 
         public IDataResult<User> GetById(int userId)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u=>u.Id == userId));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
         }
 
-        [ValidationAspect(typeof(User))]
+        //[ValidationAspect(typeof(User))]
         public IResult Update(User user)
         {
             _userDal.Update(user);
@@ -43,7 +43,7 @@ namespace Business.Concrete
 
 
 
-        [ValidationAspect(typeof(User))]
+        //[ValidationAspect(typeof(User))]
         public IResult Add(User user)
         {
             _userDal.Add(user);

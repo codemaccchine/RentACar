@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using Core.Entities.Concrete;
+using System.Runtime.Serialization;
 
 namespace Business.Constants.Messages
 {
@@ -19,5 +20,8 @@ namespace Business.Constants.Messages
         public static readonly string ImageLimitExceded = "Resim yükleme limiti aşıldığı için yeni resim yüklenemiyor";
         public static readonly string RentalReturnDateNextTime = "Kiralamak istediğiniz araba henüz dönüş yapmadı";
         public static readonly string AuthorizationDenied = "Yetkiniz yok";
+        public static readonly string UserNotFound = "Kullanıcı bulunamadı";
+        public static readonly string PasswordError = "Parola hatası";
+        public static readonly string UserAlreadyExists = "Kullanıcı zaten mevcut";
     }
 }

@@ -54,7 +54,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 0)
