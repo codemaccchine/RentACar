@@ -1,7 +1,7 @@
-﻿using Core.Utilities.Results.Abstract;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 using System.Collections.Generic;
 using Entities.Dtos;
+using Core.Utilities.Results.Abstract;
 
 namespace Business.Abstract
 {
@@ -17,5 +17,8 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetCarsByColorId(int colorId);
 
         IDataResult<List<CarDetailsDto>> GetCarDetails();
+
+
+        IResult TransactionalOperation(Car car);
     }
 }

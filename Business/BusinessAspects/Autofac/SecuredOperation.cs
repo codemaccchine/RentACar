@@ -1,14 +1,11 @@
-﻿using Core.Utilities.Interceptors;
+﻿using Business.Constants.Messages;
+using Castle.DynamicProxy;
+using Core.Extensions;
+using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Http;
-using Core.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
-using Business.Constants;
-using Business.Constants.Messages;
+using System;
 
 namespace Business.BusinessAspects.Autofac
 {
@@ -21,6 +18,7 @@ namespace Business.BusinessAspects.Autofac
         {
             _roles = roles.Split(',');
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
+
         }
 
         protected override void OnBefore(IInvocation invocation)

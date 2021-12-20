@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
+using Business.ValidationRules;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -11,29 +14,25 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
-
         public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
         }
 
-        public IResult Delete(User user)
+
+        [SecuredOperation(roles: "user.add", Priority = 1)]
+        [ValidationAspect(typeof(UserValidator), Priority = 2)]
+        [CacheRemoveAspect(pattern: "IUserService.Get", Priority = 3)]
+        public IResult Add(User user)
         {
-            _userDal.Delete(user);
+            _userDal.Add(user);
             return new SuccessResult();
         }
 
-        public IDataResult<List<User>> GetAll()
-        {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll());
-        }
 
-        public IDataResult<User> GetById(int userId)
-        {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
-        }
-
-        //[ValidationAspect(typeof(User))]
+        [SecuredOperation(roles: "user.update", Priority = 1)]
+        [ValidationAspect(typeof(UserValidator), Priority = 2)]
+        [CacheRemoveAspect(pattern: "IUserService.Get", Priority = 3)]
         public IResult Update(User user)
         {
             _userDal.Update(user);
@@ -41,14 +40,30 @@ namespace Business.Concrete
         }
 
 
-
-
-        //[ValidationAspect(typeof(User))]
-        public IResult Add(User user)
+        [SecuredOperation(roles: "user.delete", Priority = 1)]
+        [CacheRemoveAspect(pattern: "IUserService.Get", Priority = 2)]
+        public IResult Delete(User user)
         {
-            _userDal.Add(user);
+            _userDal.Delete(user);
             return new SuccessResult();
         }
+
+
+        [SecuredOperation(roles: "user", Priority = 1)]
+        [CacheAspect(duration: 120, Priority = 2)]
+        public IDataResult<List<User>> GetAll()
+        {
+            return new SuccessDataResult<List<User>>(_userDal.GetAll());
+        }
+
+
+        [SecuredOperation(roles: "user", Priority = 1)]
+        [CacheAspect(duration: 120, Priority = 2)]
+        public IDataResult<User> GetById(int userId)
+        {
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
+        }
+        
 
         public IDataResult<User> GetByMail(string email)
         {

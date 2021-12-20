@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -10,7 +9,6 @@ namespace WebAPI.Controllers
     public class CarsController : ControllerBase
     {
         ICarService _carService;
-
         public CarsController(ICarService carService)
         {
             _carService = carService;
@@ -111,6 +109,18 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+
+
+        [HttpPost("transaction")]
+        public IActionResult TransactionTest(Car car)
+        {
+            var result = _carService.TransactionalOperation(car);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
         }
     }
 }

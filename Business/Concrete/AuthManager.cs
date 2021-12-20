@@ -4,19 +4,15 @@ using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Security.Hashing;
-using Core.Utilities.Security.JWT;
+using Core.Utilities.Security.Jwt;
 using Entities.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
     public class AuthManager : IAuthService
     {
-        IUserService _userService;
-        ITokenHelper _tokenHelper;
-
+        private IUserService _userService;
+        private ITokenHelper _tokenHelper;
         public AuthManager(IUserService userService, ITokenHelper tokenHelper)
         {
             _userService = userService;
@@ -58,18 +54,27 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(userToCheck, SuccessMessages.SuccessfulLogin);
         }
 
-        
 
+        /// <summary>
+        /// Kullanıcının var olup olmadığını kontrol eder
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public IResult UserExists(string email)
         {
-            if (_userService.GetByMail(email).Data != null)
+            if (_userService.GetByMail(email) != null)
             {
                 return new ErrorResult(ErrorMessages.UserAlreadyExists);
             }
-
             return new SuccessResult();
         }
 
+
+        /// <summary>
+        /// AccessToken oluşturur
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             var claims = _userService.GetClaims(user).Data;

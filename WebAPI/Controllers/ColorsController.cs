@@ -9,11 +9,11 @@ namespace WebAPI.Controllers
     public class ColorsController : ControllerBase
     {
         IColorService _colorService;
-
         public ColorsController(IColorService colorService)
         {
             _colorService = colorService;
         }
+
 
         [HttpGet("getall")]
         public IActionResult GetALL()
@@ -25,6 +25,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
 
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)

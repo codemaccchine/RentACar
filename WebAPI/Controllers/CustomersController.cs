@@ -14,6 +14,7 @@ namespace WebAPI.Controllers
             _customerService = customerService;
         }
 
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -48,6 +49,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
 
         [HttpPost("udpate")]
         public IActionResult Update(Customer customer)

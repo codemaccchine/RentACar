@@ -1,27 +1,22 @@
 ﻿using Business.Abstract;
 using Entities.Dtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : Controller
     {
         IAuthService _authService;
-
         public AuthController(IAuthService authService)
         {
             _authService = authService;
         }
 
+
         [HttpPost("login")]
-        public IActionResult Login(UserForLoginDto userForLoginDto)
+        public ActionResult Login(UserForLoginDto userForLoginDto)
         {
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)
@@ -40,7 +35,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("register")]
-        public IActionResult Register(UserForRegisterDto userForRegisterDto)
+        public ActionResult Register(UserForRegisterDto userForRegisterDto)
         {
             var userExists = _authService.UserExists(userForRegisterDto.Email);
             if (!userExists.Success)
