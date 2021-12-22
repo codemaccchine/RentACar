@@ -9,6 +9,7 @@ using Core.Utilities.Results;
 using Core.Utilities.Results.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 
@@ -51,7 +52,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation(roles: "moderator,admin", Priority = 1)]
+        //[SecuredOperation(roles: "moderator,admin", Priority = 1)]
         [CacheAspect(duration: 120, Priority = 2)]
         public IDataResult<List<Rental>> GetAll()
         {
@@ -59,7 +60,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation(roles: "moderator,admin", Priority = 1)]
+        //[SecuredOperation(roles: "moderator,admin", Priority = 1)]
         [CacheAspect(duration: 120, Priority = 2)]
         public IDataResult<Rental> GetById(int rentalId)
         {
@@ -74,6 +75,11 @@ namespace Business.Concrete
         {
             _rentalDal.Update(rental);
             return new SuccessResult();
+        }
+
+        public IDataResult<List<RentalDetailsDto>> GetRentalDetails()
+        {
+            return new SuccessDataResult<List<RentalDetailsDto>>(_rentalDal.GetRentalDetails());
         }
 
 
@@ -109,5 +115,7 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
+
+       
     }
 }

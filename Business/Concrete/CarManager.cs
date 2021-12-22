@@ -66,7 +66,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation(roles: "user", Priority = 1)]
+        //[SecuredOperation(roles: "user", Priority = 1)]
         [CacheAspect(duration: 120, Priority = 2)]
         [PerformanceAspect(5, Priority = 3)]
         public IDataResult<List<Car>> GetAll()
@@ -80,7 +80,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation(roles: "user", Priority = 1)]
+        //[SecuredOperation(roles: "user", Priority = 1)]
         [CacheAspect(duration: 120, Priority = 2)]
         public IDataResult<Car> GetById(int id)
         {
@@ -92,19 +92,15 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation(roles: "user", Priority = 1)]
+        //[SecuredOperation(roles: "user", Priority = 1)]
         [CacheAspect(duration: 60, Priority = 2)]
         public IDataResult<List<CarDetailsDto>> GetCarDetails()
         {
-            if (DateTime.Now.Hour == 6)
-            {
-                return new ErrorDataResult<List<CarDetailsDto>>(ErrorMessages.MaintenanceTime);
-            }
             return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(), SuccessMessages.CarsListed);
         }
 
 
-        [SecuredOperation(roles: "user", Priority = 1)]
+        //[SecuredOperation(roles: "user", Priority = 1)]
         [CacheAspect(duration: 60, Priority = 2)]
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
@@ -116,7 +112,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation(roles: "user", Priority = 1)]
+        //[SecuredOperation(roles: "user", Priority = 1)]
         [CacheAspect(duration: 60, Priority = 2)]
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {

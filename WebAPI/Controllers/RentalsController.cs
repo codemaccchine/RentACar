@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace WebAPI.Controllers
 {
@@ -31,6 +32,20 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var result = _rentalService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+        [HttpGet("getdetails")]
+        public IActionResult GetRentalDetails()
+        {
+            Thread.Sleep(1000);
+
+            var result = _rentalService.GetRentalDetails();
             if (result.Success)
             {
                 return Ok(result);

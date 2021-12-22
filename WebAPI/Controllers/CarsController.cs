@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace WebAPI.Controllers
 {
@@ -19,7 +20,9 @@ namespace WebAPI.Controllers
         //[Authorize(Roles = "Car.List")]
         public IActionResult GetAll()
         {
-            var result = _carService.GetAll();
+            Thread.Sleep(1000);
+            
+            var result = _carService.GetCarDetails();
             if (result.Success)
             {
                 return Ok(result);

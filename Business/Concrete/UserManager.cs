@@ -49,7 +49,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation(roles: "user", Priority = 1)]
+        [SecuredOperation(roles: "admin", Priority = 1)]
         [CacheAspect(duration: 120, Priority = 2)]
         public IDataResult<List<User>> GetAll()
         {
@@ -57,7 +57,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation(roles: "user", Priority = 1)]
+        [SecuredOperation(roles: "admin", Priority = 1)]
         [CacheAspect(duration: 120, Priority = 2)]
         public IDataResult<User> GetById(int userId)
         {
